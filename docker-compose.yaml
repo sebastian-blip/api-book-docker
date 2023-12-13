@@ -1,0 +1,29 @@
+services:
+
+  api-book:
+    container_name: api_book
+    image: r5/api_book:dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - TZ=America/Bogota
+    logging:
+      driver: "journald"
+    ports:
+      - 8000:8000
+    depends_on:
+      - mongodb
+    volumes:
+      - ./api_book/input/credenciales/private_jwt.pem:/opt/LinkScribe-Blueprint/input/credenciales/private_jwt.pem:ro
+      - ./api_book/input/credenciales/public_jwt.pem:/opt/LinkScribe-Blueprint/input/credenciales/public_jwt.pem:ro
+
+  mongodb:
+    image: mongo:6-jammy
+    ports:
+      - '27017:27017'
+    volumes:
+      - dbdata6:/data/db
+
+volumes:
+  dbdata6:
