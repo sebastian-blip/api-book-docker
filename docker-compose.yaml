@@ -15,8 +15,9 @@ services:
     depends_on:
       - mongodb
     volumes:
-      - ./api_book/input/credenciales/private_jwt.pem:/opt/LinkScribe-Blueprint/input/credenciales/private_jwt.pem:ro
-      - ./api_book/input/credenciales/public_jwt.pem:/opt/LinkScribe-Blueprint/input/credenciales/public_jwt.pem:ro
+      - ./api_book/input/credenciales/private_jwt.pem:/opt/api_book/input/credenciales/private_jwt.pem:ro
+      - ./api_book/input/credenciales/public_jwt.pem:/opt/api_book/input/credenciales/public_jwt.pem:ro
+      - ./api_book/input/credenciales/.env:/opt/Lapi_book/input/credenciales/.env:ro
 
   mongodb:
     image: mongo:6-jammy
